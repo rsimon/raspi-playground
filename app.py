@@ -17,9 +17,8 @@ class App(object):
         GPIO.output(18, GPIO.LOW)
         return
 
-if __name__ == '__main__':
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(18, GPIO.OUT)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(18, GPIO.OUT)
 
-    cherrypy.quickstart(App(), config = "app.config")
+cherrypy.tree.mount(App(), "/", "app.config")
