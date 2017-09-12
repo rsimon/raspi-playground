@@ -1,5 +1,7 @@
 (function() {
-  var button = document.getElementById('led-toggle'),
+  var btnToggleLed = document.getElementById('led-toggle'),
+      btnLeft = document.getElementById('servo-left'),
+      btnRight = document.getElementById('servo-right'),
 
       sendRequest = function(url) {
         var xmlhttp = new XMLHttpRequest();
@@ -7,18 +9,29 @@
         xmlhttp.send();
       },
 
-      toggle = function() {
-        var isOn = button.className === 'on';
+      toggleLed = function() {
+        var isOn = btnToggleLed.className === 'on';
         if (isOn) {
-          button.className = 'off';
-          button.innerHTML = 'EIN';
+          btnToggleLed.className = 'off';
+          btnToggleLed.innerHTML = 'EIN';
           sendRequest('off');
         } else {
-          button.className = 'on';
-          button.innerHTML = 'AUS';
+          btnToggleLed.className = 'on';
+          btnToggleLed.innerHTML = 'AUS';
           sendRequest('on');
         }
+      },
+
+      onLeft = function() {
+        sendRequest('left');
+      },
+
+      onRight = function() {
+        sendRequest('right');
       };
 
-  button.onclick = toggle;
+  btnToggleLed.onclick = toggleLed;
+  btnLeft.onclick = onLeft;
+  btnRight.onclick = onRight;
+  
 })();
