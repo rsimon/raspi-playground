@@ -17,6 +17,14 @@ class App(object):
         GPIO.output(18, GPIO.LOW)
         return
 
+    @cherrypy.expose
+    def left(self):
+        return
+
+    @cherrypy.expose
+    def right(self):
+        return
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(18, GPIO.OUT)
