@@ -27,12 +27,12 @@ class App(object):
 
     @cherrypy.expose
     def left(self):
-        p.ChangeDutyCycle(2.5)
+        App.p.ChangeDutyCycle(2.5)
         return
 
     @cherrypy.expose
     def right(self):
-        p.ChangeDutyCycle(12.5)
+        App.p.ChangeDutyCycle(12.5)
         return
 
 cherrypy.tree.mount(App(), "/", "app.config")
