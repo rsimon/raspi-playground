@@ -1,18 +1,25 @@
 import cherrypy
+import RPi.GPIO as GPIO
 
 class App(object):
-    
+
     @cherrypy.expose
     def index(self):
         return file("app.html")
 
     @cherrypy.expose
     def on(self):
-        return "On"
+        GPIO.output(18, GPIO.HIGH)
+        return
 
     @cherrypy.expose
     def off(self):
-        return "Off"
+        GPIO.output(18, GPIO.LOW)
+        return
 
 if __name__ == '__main__':
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(18, GPIO.OUT)
+
     cherrypy.quickstart(App(), config = "app.config")
