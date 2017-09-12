@@ -1,7 +1,15 @@
 import cherrypy
 import RPi.GPIO as GPIO
 
-class App(p):
+class App(object):
+
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(23, GPIO.OUT)
+
+    p = GPIO.PWM(23, 50)
+    p.start(7.5)
 
     @cherrypy.expose
     def index(self):
@@ -27,12 +35,4 @@ class App(p):
         p.ChangeDutyCycle(12.5)
         return
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(18, GPIO.OUT)
-GPIO.setup(23, GPIO.OUT)
-
-p = GPIO.PWM(23, 50)
-p.start(7.5)
-
-cherrypy.tree.mount(App(p), "/", "app.config")
+cherrypy.tree.mount(App(), "/", "app.config")
