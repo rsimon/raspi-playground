@@ -1,5 +1,4 @@
 import cherrypy
-from cherrypy import log
 import RPi.GPIO as GPIO
 
 class App(object):
@@ -29,13 +28,13 @@ class App(object):
 
     @cherrypy.expose
     def left(self):
-        log.info("LEFT")
+        cherrypy.log("LEFT")
         self.p.ChangeDutyCycle(2.5)
         return
 
     @cherrypy.expose
     def right(self):
-        log.info("RIGHT")
+        cherrypy.log("RIGHT")
         self.p.ChangeDutyCycle(12.5)
         return
 
