@@ -1,9 +1,10 @@
 import cherrypy
+from cherrypy import log
 import RPi.GPIO as GPIO
 
 class App(object):
 
-    def __init__():
+    def __init__(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         GPIO.setup(18, GPIO.OUT)
@@ -28,13 +29,13 @@ class App(object):
 
     @cherrypy.expose
     def left(self):
-        print("LEFT")
+        log.info("LEFT")
         self.p.ChangeDutyCycle(2.5)
         return
 
     @cherrypy.expose
     def right(self):
-        print "RIGHT"
+        log.info("RIGHT")
         self.p.ChangeDutyCycle(12.5)
         return
 
