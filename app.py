@@ -3,13 +3,14 @@ import RPi.GPIO as GPIO
 
 class App(object):
 
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(18, GPIO.OUT)
-    GPIO.setup(23, GPIO.OUT)
+    def __init__():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
+        GPIO.setup(18, GPIO.OUT)
+        GPIO.setup(23, GPIO.OUT)
 
-    p = GPIO.PWM(23, 50)
-    p.start(7.5)
+        self.p = GPIO.PWM(23, 50)
+        self.p.start(7.5)
 
     @cherrypy.expose
     def index(self):
@@ -27,12 +28,14 @@ class App(object):
 
     @cherrypy.expose
     def left(self):
-        App.p.ChangeDutyCycle(2.5)
+        print("LEFT")
+        self.p.ChangeDutyCycle(2.5)
         return
 
     @cherrypy.expose
     def right(self):
-        App.p.ChangeDutyCycle(12.5)
+        print "RIGHT"
+        self.p.ChangeDutyCycle(12.5)
         return
 
 cherrypy.tree.mount(App(), "/", "app.config")
