@@ -11,11 +11,11 @@
         var isOn = button.className === 'on';
         if (isOn) {
           button.className = 'off';
-          button.innerHTML = 'ON';
+          button.innerHTML = 'EIN';
           sendRequest('off');
         } else {
           button.className = 'on';
-          button.innerHTML = 'OFF';
+          button.innerHTML = 'AUS';
           sendRequest('on');
         }
       };
