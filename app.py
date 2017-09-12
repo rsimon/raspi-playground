@@ -1,4 +1,5 @@
 import cherrypy
+import time
 import RPi.GPIO as GPIO
 
 class App(object):
@@ -11,14 +12,6 @@ class App(object):
 
         self.p = GPIO.PWM(23, 50)
         self.p.start(7.5)
-
-        while True:
-            self.p.ChangeDutyCycle(7.5)  # turn towards 90 degree
-            time.sleep(1) # sleep 1 second
-            self.p.ChangeDutyCycle(2.5)  # turn towards 0 degree
-            time.sleep(1) # sleep 1 second
-            self.p.ChangeDutyCycle(12.5) # turn towards 180 degree
-            time.sleep(1) # sleep 1 second
 
     @cherrypy.expose
     def index(self):
@@ -36,8 +29,16 @@ class App(object):
 
     @cherrypy.expose
     def left(self):
-        cherrypy.log("LEFT")
-        self.p.ChangeDutyCycle(2.5)
+        # cherrypy.log("LEFT")
+        # self.p.ChangeDutyCycle(2.5)
+        while True:
+            self.p.ChangeDutyCycle(7.5)  # turn towards 90 degree
+            time.sleep(1) # sleep 1 second
+            self.p.ChangeDutyCycle(2.5)  # turn towards 0 degree
+            time.sleep(1) # sleep 1 second
+            self.p.ChangeDutyCycle(12.5) # turn towards 180 degree
+            time.sleep(1) # sleep 1 second
+            
         return
 
     @cherrypy.expose
