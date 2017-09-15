@@ -28,10 +28,35 @@
 
       onRight = function() {
         sendRequest('right');
+      },
+
+      initWebsocket = function() {
+
+        console.log('start');
+
+        var connection = new WebSocket("ws://localhost:8080/ws");
+
+        // When the connection is open, send some data to the server
+        connection.onopen = function () {
+          console.log('sending ping');
+          connection.send('Ping'); // Send the message 'Ping' to the server
+        };
+
+        // Log errors
+        connection.onerror = function (error) {
+          console.log(error);
+        };
+
+        // Log messages from the server
+        connection.onmessage = function (e) {
+          console.log('Server: ' + e.data);
+        };
       };
+
+  initWebsocket();
 
   btnToggleLed.onclick = toggleLed;
   btnLeft.onclick = onLeft;
   btnRight.onclick = onRight;
-  
+
 })();
