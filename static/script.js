@@ -3,6 +3,8 @@
       btnLeft = document.getElementById('servo-left'),
       btnRight = document.getElementById('servo-right'),
 
+      connection,
+
       sendRequest = function(url) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open('GET', url, true);
@@ -23,18 +25,18 @@
       },
 
       onLeft = function() {
-        sendRequest('left');
+        connection.send('left');
       },
 
       onRight = function() {
-        sendRequest('right');
+        connection.send('right');
       },
 
       initWebsocket = function() {
 
         console.log('start');
 
-        var connection = new WebSocket("ws://localhost:8080/ws");
+        connection = new WebSocket("ws://localhost:8080/ws");
 
         // When the connection is open, send some data to the server
         connection.onopen = function () {
