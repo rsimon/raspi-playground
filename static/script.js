@@ -36,7 +36,7 @@
 
         console.log('start');
 
-        connection = new WebSocket("ws://musk.local:8080/ws");
+        connection = new WebSocket("ws://localhost:8080/ws");
 
         // When the connection is open, send some data to the server
         connection.onopen = function () {
@@ -61,12 +61,24 @@
   btnLeft.onclick = onLeft;
   btnRight.onclick = onRight;
 
-  jQuery('.slider').roundSlider({
-    sliderType: "min-range",
-    handleShape: "round",
-    width: 22,
-    radius: 100,
-    value: 45
+  var steering = jQuery('.slider').roundSlider({
+    sliderType: 'default',
+    circleShape: 'quarter-top-left',
+    showTooltip: false,
+    handleShape: 'round',
+    handleSize: 48,
+    width: 4,
+    radius: 250,
+    value: 50,
   });
-  
+
+  steering.on('drag', function(e) {
+    var angle = (e.value - 50) * 1.8;
+    connection.send('angle=' + angle);
+  });
+
+  steering.on('stop', function(e) {
+    steering.roundSlider('setValue', 50);
+  });
+
 })();

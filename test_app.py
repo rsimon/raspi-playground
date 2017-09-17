@@ -18,21 +18,15 @@ class ExampleWebSocket(WebSocket):
             conn.send("Yay!")
 
     def opened(self):
-        cherrypy.log('Opened Connection')
-
         try:
-            t = threading.Thread(target=self.poll_thread)
+            t = threading.Thread(target = self.poll_thread)
             t.start()
         except:
             cherrypy.log('Error: unable to start thread')
 
     def received_message(self, message):
-        if message == 'left':
-            cherrypy.log('LEFT')
-        elif message == 'right':
-            cherrypy.log('RIGHT')
-
-        self.send(message.data, message.is_binary)
+        cherrypy.log(str(message));
+        # self.send(message.data, message.is_binary)
 
 class App(object):
 
