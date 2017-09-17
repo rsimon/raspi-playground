@@ -61,4 +61,12 @@
   btnLeft.onclick = onLeft;
   btnRight.onclick = onRight;
 
+  jQuery('.slider').roundSlider({
+    sliderType: "min-range",
+    handleShape: "round",
+    width: 22,
+    radius: 100,
+    value: 45
+  });
+  
 })();
