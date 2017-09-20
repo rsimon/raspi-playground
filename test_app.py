@@ -47,6 +47,9 @@ class App(object):
         pass
 
 cherrypy.quickstart(App(), config = {
+    'global' : {
+        'server.socket_host': '0.0.0.0'
+    },
     '/' : {
         'tools.sessions.on': True,
         'tools.staticdir.root': os.path.dirname(os.path.abspath(__file__))
