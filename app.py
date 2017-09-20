@@ -38,9 +38,9 @@ class ExampleWebSocket(WebSocket):
         cherrypy.log(message.data)
         if (message.data.startswith('angle')):
             angle = float(message.data[6:])
+	    cherrypy.log(str(angle))
             dutyCycle = 2.5 + 10.5 * angle / 100
-            cherrypy.log(angle)
-            cherrypy.log(dutyCycle)
+            cherrypy.log(str(dutyCycle))
             p.ChangeDutyCycle(dutyCycle)
 
 class App(object):
