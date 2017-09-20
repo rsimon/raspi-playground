@@ -59,5 +59,4 @@ cherrypy.quickstart(App(), config = {
         'tools.websocket.on': True,
         'tools.websocket.handler_cls': ExampleWebSocket
     }
-
 })
