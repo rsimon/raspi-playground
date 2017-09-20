@@ -25,22 +25,23 @@ class ExampleWebSocket(WebSocket):
             time.sleep(2)
             count += 1
             conn.send("Yay!")
-
+    '''
     def opened(self):
         try:
             t = threading.Thread(target = self.poll_thread)
             t.start()
         except:
             cherrypy.log('Error: unable to start thread')
+    '''
 
     def received_message(self, message):
         cherrypy.log(message.data)
         if (message.data.startswith('angle')):
-            angle = message.data[6:]
+            angle = float(message.data[6:])
+            dutyCycle = 2.5 + 10.5 * angle / 100
             cherrypy.log(angle)
-            p.ChangeDutyCycle(2.5)
-
-        cherrypy.log(str(message));
+            cherrypy.log(dutyCycle)
+            p.ChangeDutyCycle(dutyCycle)
 
 class App(object):
 
