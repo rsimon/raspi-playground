@@ -36,7 +36,7 @@
 
         console.log('start');
 
-        connection = new WebSocket("ws://localhost:8080/ws");
+        connection = new WebSocket("ws://musk.local:8080/ws");
 
         // When the connection is open, send some data to the server
         connection.onopen = function () {
