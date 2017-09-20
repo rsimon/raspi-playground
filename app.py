@@ -34,6 +34,7 @@ class ExampleWebSocket(WebSocket):
             cherrypy.log('Error: unable to start thread')
 
     def received_message(self, message):
+        cherrypy.log(message.data)
         if (message.data == 'left'):
             p.ChangeDutyCycle(2.5)
         elif (message.data == 'right'):
