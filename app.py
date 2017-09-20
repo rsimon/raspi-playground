@@ -16,15 +16,17 @@ GPIO.setup(23, GPIO.OUT)
 
 class ExampleWebSocket(WebSocket):
 
-    p = GPIO.PWM(23, 50)
-    p.start(7.5)
-
     def poll_thread(conn):
         count = 0
         while count < 5:
             time.sleep(2)
             count += 1
             conn.send("Yay!")
+
+    def opened(self):
+        self.p = GPIO.PWM(23, 50)
+        self.p.start(7.5)
+
     '''
     def opened(self):
         try:
@@ -41,7 +43,7 @@ class ExampleWebSocket(WebSocket):
             dutyCycle = 2.5 + 10.5 * angle / 100
             cherrypy.log(angle)
             cherrypy.log(dutyCycle)
-            p.ChangeDutyCycle(dutyCycle)
+            self.p.ChangeDutyCycle(dutyCycle)
 
 class App(object):
 

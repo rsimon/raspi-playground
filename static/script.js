@@ -74,7 +74,7 @@
 
   steering.on('drag', function(e) {
     var angle = (e.value - 50) * 1.8;
-    connection.send('angle=' + angle);
+    connection.send('angle=' + e.value);
   });
 
   steering.on('stop', function(e) {
