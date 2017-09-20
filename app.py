@@ -35,11 +35,11 @@ class ExampleWebSocket(WebSocket):
 
     def received_message(self, message):
         cherrypy.log(message.data)
-        if (message.data == 'left'):
+        if (message.data.startswith('angle')):
+            angle = message.data[6:]
+            cherrypy.log(angle)
             p.ChangeDutyCycle(2.5)
-        elif (message.data == 'right'):
-            p.ChangeDutyCycle(12.5)
-            
+
         cherrypy.log(str(message));
 
 class App(object):
