@@ -35,14 +35,6 @@ button {
   color:#fff;
 }
 
-.servo button {
-  display:inline-block;
-  font-size:20px;
-  width:120px;
-  padding:20px 0;
-  margin:10px 5px;
-}
-
 button.on {
   background-color:#fff;
   color:#000;

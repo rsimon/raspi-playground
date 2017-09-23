@@ -1,2 +1,2 @@
 #/bin/bash
-cherryd -c app.config -i app -d
+cherryd -i src/app -d
