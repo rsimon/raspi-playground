@@ -24,9 +24,17 @@
         }
       },
 
+      disableRubberbandScroll = function() {
+        document.body.addEventListener('touchmove', function(e) {
+          e.preventDefault();
+        });
+      },
+
       initWebsocket = function() {
-        // TODO make URL relative
-        connection = new WebSocket("ws://musk.local:8080/ws");
+        var loc = window.location,
+            uri = 'ws://' + loc.host + ':' + loc.port + '/ws';
+
+        connection = new WebSocket(uri);
 
         connection.onerror = function (error) {
           // TODO UI alert
@@ -61,6 +69,8 @@
           connectoin.send('heading=50');
         });
       };
+
+  disableRubberbandScroll();
 
   btnToggleLight.onclick = toggleLight;
 
