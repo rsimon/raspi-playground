@@ -1,6 +1,8 @@
 # import threading
 # import time
 
+import RPi.GPIO as GPIO
+
 from ws4py.websocket import WebSocket
 
 '''

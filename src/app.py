@@ -21,7 +21,7 @@ class App(object):
     '''
     @cherrypy.expose
     def index(self):
-        return file("app.html")
+        return file("src/app.html")
 
     '''
     Switch light on
@@ -56,7 +56,7 @@ cherrypy.quickstart(App(), config = {
     },
     '/static' : {
         'tools.staticdir.on': True,
-        'tools.staticdir.dir': 'static'
+        'tools.staticdir.dir': '../static'
     },
     '/ws' : {
         'tools.websocket.on': True,

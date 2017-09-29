@@ -4,7 +4,7 @@
 
       connection,
 
-      toggleLed = function() {
+      toggleLight = function() {
         var isOn = btnToggleLight.className === 'on',
 
             sendRequest = function(url) {
@@ -32,7 +32,7 @@
 
       initWebsocket = function() {
         var loc = window.location,
-            uri = 'ws://' + loc.host + ':' + loc.port + '/ws';
+            uri = 'ws://' + loc.host + '/ws';
 
         connection = new WebSocket(uri);
 
@@ -66,7 +66,7 @@
 
         steering.on('stop', function(e) {
           steering.roundSlider('setValue', 50);
-          connectoin.send('heading=50');
+          connection.send('heading=50');
         });
       };
 
