@@ -1,13 +1,10 @@
 import cherrypy
 import os
-import threading
-import time
 import RPi.GPIO as GPIO
 
 from rc_handler import RemoteControlHandler
 
 from ws4py.server.cherrypyserver import WebSocketPlugin, WebSocketTool
-from ws4py.websocket import WebSocket
 
 WebSocketPlugin(cherrypy.engine).subscribe()
 cherrypy.tools.websocket = WebSocketTool()
